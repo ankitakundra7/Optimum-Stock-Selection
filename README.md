@@ -28,4 +28,25 @@ n	stocks	and	their	representatives	in	the	fund.
 Another	way	of	thinking	is	that,	you	have	two	sets.	Set	I	has	all	stocks	in	the	index.	Set	F	has	fund	stocks.	You	
 want	to	create	a	link	that	maps	elements	of	set	I	to	elements	of	set	F.	The	first	constraint	in	the	formulation	
 above	is	equivalent	to	saying	that	not	more	than	q	elements	of	F	can	be	mapped	from	set	I.	The	second	
-constraint	suggests	that	each	element	in	the	set	I	will	map	to	single	element	in	set	F	.	The	third	constraint	
+constraint	suggests	that	each	element	in	the	set	I	will	map	to	single	element	in	set	F	.	The	third	constraint suggests that if an element from set I gets mapped to an element in set F, then the element of set F better be 
+present in the fund. The binary constraint on xij indicates if a link between element i in set I to element j in set 
+F exists. The weight on that link is the correlation ρij between stock i in set I and stock j in set F. Many such 
+mappings which satisfy the above constraints exist. Your objective gives you the best mapping. This is the 
+basic idea of bipartite matching.  
+
+max",$$ $ 𝜌%&𝑥%&
+'
+&()
+'
+%()
+ 
+𝑠. 𝑡. $ 𝑦&
+'
+&()
+= 𝑚.                                          
+$ 𝑥%&
+'
+&()
+= 1   𝑓𝑜𝑟 𝑖 = 1,2, ... , 𝑛 
+𝑥%&≤ 𝑦&       𝑓𝑜𝑟 𝑖, 𝑗 = 1,2, ... , 𝑛 
+𝑥%&, 𝑦&∈ {0,1}            
