@@ -34,30 +34,17 @@ F exists. The weight on that link is the correlation ρij between stock i in set
 mappings which satisfy the above constraints exist. Your objective gives you the best mapping. This is the 
 basic idea of bipartite matching.  
 
-max",$$ $ 𝜌%&𝑥%&
-'
-&()
-'
-%()
- 
-𝑠. 𝑡. $ 𝑦&
-'
-&()
-= 𝑚.                                          
-$ 𝑥%&
-'
-&()
-= 1   𝑓𝑜𝑟 𝑖 = 1,2, ... , 𝑛 
-𝑥%&≤ 𝑦&       𝑓𝑜𝑟 𝑖, 𝑗 = 1,2, ... , 𝑛 
-𝑥%&, 𝑦&∈ {0,1}    
 
 
-''
-max$$𝜌%&𝑥%& ",$ %() &()
-'
-𝑠.𝑡.$𝑦 =𝑚. &
-&()
-'
-$𝑥%&=1 𝑓𝑜𝑟𝑖=1,2,...,𝑛 &()
-𝑥 ≤ 𝑦 𝑓𝑜𝑟 𝑖,𝑗 = 1,2,...,𝑛 %& &
-𝑥 ,𝑦 ∈{0,1}
+Problem Overview
+
+Equity money management strategies are largely classified as either ‘active’ or ‘passive’. The most common passive strategy is that of “indexing” where the goal is to choose a portfolio that mirrors the movements of the broad market population or a market index. Such a portfolio is called an index fund. For example, the QQQ Index fund tracks the NASDAQ-100 index.
+
+Constructing an index fund that tracks a specific broad market index could be done by simply purchasing all n stocks in the index, with the same weights as in the index. However, this approach is impractical (many small positions) and expensive (rebalancing costs may frequently be incurred, price response to trading). An index fund with m stocks, where m is substantially smaller than the size of the target population, n, seems desirable.
+
+In this project, we will create an Index fund with m stocks to track the NASDAQ-100 index. We will do this in multiple steps. First, we will formulate an integer program that picks exactly m out of n stocks for our
+portfolio. This integer program will take as input a ‘similarity matrix’, which we will call 𝜌. The individual elements of this matrix, 𝜌!", represent similarity between stock i and j. An example of this is the correlation between the returns of stocks i and j. But one could choose other similarity metrics 𝜌!".
+
+Next, you will solve a linear program to decide how many of each chosen stock to buy for your portfolio and finally evaluate how well your index fund does as compared to the NASDAQ-100 index, out of sample. You will examine the performance for several values of m.
+![image](https://user-images.githubusercontent.com/65372245/147303949-c72a9995-9a11-4f39-9ba0-08420107c293.png)
+
