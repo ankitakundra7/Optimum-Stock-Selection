@@ -1,2 +1,0 @@
-# Optimum-Stock-Selection-I
-
