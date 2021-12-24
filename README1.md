@@ -31,12 +31,10 @@ The absolute value function is non-linear, so we must reformulate this optimizat
 
 Suppose I want to solve
 
-min
-#
-|𝑥 − 1| + |𝑥 − 2| + |𝑥 − 3|
+
 
 It should be apparent that the answer to this problem is x=2. However, this is a non-linear program; here’s how you could formulate it as an LP.
-![image](https://user-images.githubusercontent.com/65372245/147304103-e7dbd2c3-7533-4f64-bc64-4e3b668ec9ea.png)
+
 
 Let’s think about what y1 does here. We are trying to minimize over y1 and we constrain y1 to be bigger than both x-1 and 1-x. Only one of x-1 or 1-x can be bigger than zero, so if y1 is bigger than both of them
 then y1 must be bigger than |x-1|. If we’re trying to make y1 as small as possible and the only constraint on y1 is that y1 ≥ |x-1|, then y1 will be exactly equal to |x-1|. Now since we’re also optimizing over x, and x shows up in all the constraints for y1, y2, y3 then these two optimization problems are exactly the same. The first formulation is non-linear, and the second formulation is an LP!!! Take this hint and apply it to the portfolio weight construction.
@@ -45,7 +43,7 @@ Specifics
 
 1)	Two csv files are included with this assignment. One of those files contains daily prices of the index as well as the component stocks of the NASDAQ-100 in 2019. The first column is the date, the second column is the index price (NDX), and columns 3-102 are the prices of the component stocks. The second file is the same, except it’s 2020 prices. There are actually 103 stocks in the NASDAQ-100 right now, but 3 of them are new stocks that don’t have data for all of 2019, so I just removed them. You’re going to use the 2019 file for all your portfolio construction tasks and then analyze the performance on the 2020 file; that is, how well does your portfolio, constructed with 2019 data, track the index in 2020? When we grade your assignment, we will use different csv files with potentially a different number of days and a different index with a different number of component stocks. You will need to calculate the returns of the stocks in the 2019 file to calculate the correlation matrix for stock selection and weight construction, and you will need the returns of the index for weight construction. You will also need the daily returns in 2020 for both the index and the stocks to evaluate the performance of your portfolio
 in 2020. Use the correlation matrix of returns as 𝜌.
-![image](https://user-images.githubusercontent.com/65372245/147304115-de55e9be-ca6d-4d15-9924-d4c8a48293b4.png)
+
 
 1)	Start with m=5. Find the best 5 stocks to include in your portfolio and the weights of those 5 stocks, using the 2019 data. How well does this portfolio track the index in 2020? That is,
 calculate ∑+
@@ -58,7 +56,7 @@ that you are optimizing over ALL weights: min ∑-	|𝑞+  − ∑'	𝑤% 𝑟%+
 %()
 binary variables y1, y2, …, yn and add some constraints that force wi = 0 if yi = 0 using the ‘big M’ technique (What’s the smallest value of big M you could use?). You also need to add a constraint that the sum of y’s is equal to m (m and M are different things here…). It turns out that this is a VERY hard problem to solve. After 24 hours running on my desktop gurobi didn’t find a solution! We can force gurobi to quit looking for a solution after a specific amount of time by setting the TimeLimit value, in units of seconds, in the params list (the place where we tell gurobi to shut up). Redo parts 2 and 3 with this new method to find weights. For each value of m, limit gurobi to work for 1 hour. Which method works better on the 2020 data, the original method or this new method? Note that your code will need to run for up to 10 hours to create your final output. I would suggest that you plan ahead and set this to run overnight.  You can set your Python file to save your results for this part to a csv file, and then you can also have it check to see if that csv file exists, if it exists grab those results without spending the 10 hours, and if it doesn’t then re-solve the problem. That way you only have to do the big solution once and you can still work on the formatting of your Python file. In your Python file create a clearly obvious variable at the top, that is equal to 3600, that you reference to limit gurobi’s time. This way when we grade your solutions, we can set it to something smaller to make sure your code works without having to wait 10 hours for everyone’s code to run.
 4)	Pretend you are an analyst at a mutual fund. You boss has asked your team to come up with a recommendation for how many component stocks to include in the fund and how to pick their weights going forward. Write this project as if this is what you’re going to deliver to your boss. Your boss is pretty technical and understands optimization, so don’t be afraid to include quantitative material. Your boss is also busy, so be sure to include some visualizations to get the important points across. For the purpose of your recommendations, you can assume that your boss is interested in the data posted with the project.
-![image](https://user-images.githubusercontent.com/65372245/147304127-27ed5530-f6e0-4af5-9703-91d6239fea03.png)
+
 
 
 
