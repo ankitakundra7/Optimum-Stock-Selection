@@ -12,6 +12,23 @@ Next, you will solve a linear program to decide how many of each chosen stock to
 **Stock Selection**
 
 The binary decision variables yj indicates which stocks j from the index are present in the fund (yj = 1 if j is selected in the fund, 0 otherwise). For each stock in the index, i = 1, . . . , n, the binary decision variable xij indicates which stock j in the index is the best representative of stock i (xij = 1 if stock j in index is the most similar stock i, 0 otherwise).
+
 The first constraint selects exactly m stocks to be held in the fund. The second constraint imposes that each stock i has exactly one representative stock j in the index. The third constraint guarantees that stock i is best represented by stock j only if j is in the fund. The objective of the model maximizes the similarity between the n stocks and their representatives in the fund.
+
 Another way of thinking is that, you have two sets. Set I has all stocks in the index. Set F has fund stocks. You want to create a link that maps elements of set I to elements of set F. The first constraint in the formulation above is equivalent to saying that not more than q elements of F can be mapped from set I. The second constraint suggests that each element in the set I will map to single element in set F . The third constraint suggests that if an element from set I gets mapped to an element in set F, then the element of set F better be present in the fund. The binary constraint on xij indicates if a link between element i in set I to element j in set F exists. The weight on that link is the correlation ρij between stock i in set I and stock j in set F. Many such mappings which satisfy the above constraints exist. Your objective gives you the best mapping. This is the basic idea of bipartite matching.
+
+'	'
+max $ $ 𝜌%&𝑥%&
+%() &()
+'
+𝑠. 𝑡. $ 𝑦& = 𝑚.
+&() '
+$ 𝑥%& = 1 𝑓𝑜𝑟 𝑖 = 1,2, … , 𝑛
+&()
+𝑥%& ≤ 𝑦&	𝑓𝑜𝑟 𝑖, 𝑗 = 1,2, … , 𝑛
+𝑥%&, 𝑦& ∈ {0,1}
+![image](https://user-images.githubusercontent.com/65372245/147304047-f2bf84da-a14a-4143-a386-9225a8bbb85c.png)
+
+
+
 
